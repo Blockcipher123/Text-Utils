@@ -18,6 +18,7 @@ def analyze(request):
     removepunc = request.GET.get('removepunc','Off')
     fullcaps = request.GET.get('fullcaps','Off')
     fullsmall = request.GET.get('fullsmall','Off')
+    countchar = request.GET.get('countchar','Off')
     print(removepunc)
     print(djtext)
     # analyze=djtext
@@ -42,5 +43,16 @@ def analyze(request):
             analyze=analyze+i.lower()
         params = {'pursose':'Changed To LowerCase', 'analyzed_text':analyze}
         return render(request, 'analyze.html', params)
+    
+    elif (countchar=='on'):
+        analyze = ''
+        # for i in djtext:
+        analyze = len(djtext)
+
+        params = {'pursose':'Count the char', 'countchars':analyze}
+        return render(request, 'analyze.html', params)
+            
+
+
     else:
         return HttpResponse('<h1>Error! Plese click on Remove Puncatations ^__^</h1>')
