@@ -14,12 +14,12 @@ def index(request):
 def analyze(request):
     # Geting the text
     # print(request.GET.get('text','default'))
-    djtext = request.GET.get('text','default')
-    removepunc = request.GET.get('removepunc','Off')
-    fullcaps = request.GET.get('fullcaps','Off')
-    fullsmall = request.GET.get('fullsmall','Off')
-    countchar = request.GET.get('countchar','Off')
-    print(removepunc)
+    djtext = request.POST.get('text','default')
+    removepunc = request.POST.get('removepunc','Off')
+    fullcaps = request.POST.get('fullcaps','Off')
+    fullsmall = request.POST.get('fullsmall','Off')
+    countchar = request.POST.get('countchar','Off')
+    # print(removepunc)
     print(djtext)
     # analyze=djtext
     if removepunc == "on":
@@ -30,29 +30,30 @@ def analyze(request):
                 analyze=analyze+i
 
         params = {'pursose':'Remove Puncations', 'analyzed_text':analyze}
-        return render(request, 'analyze.html', params)
-    elif (fullcaps=='on'):
+        djtext = analyze
+        # return render(request, 'analyze.html', params)
+    if (fullcaps=='on'):
         analyze=''
         for i in djtext:
             analyze= analyze+i.upper()
         params = {'pursose':'Changed To Uppercase', 'analyzed_text':analyze}
-        return render(request, 'analyze.html', params)
-    elif (fullsmall=='on'):
+        djtext = analyze
+        # return render(request, 'analyze.html', params)
+    if (fullsmall=='on'):
         analyze =''
         for i in djtext:
             analyze=analyze+i.lower()
         params = {'pursose':'Changed To LowerCase', 'analyzed_text':analyze}
-        return render(request, 'analyze.html', params)
+        djtext = analyze
+        # return render(request, 'analyze.html', params)
     
-    elif (countchar=='on'):
+    if (countchar=='on'):
         analyze = ''
         # for i in djtext:
         analyze = len(djtext)
 
         params = {'pursose':'Count the char', 'countchars':analyze}
-        return render(request, 'analyze.html', params)
-            
-
-
-    else:
-        return HttpResponse('<h1>Error! Plese click on Remove Puncatations ^__^</h1>')
+        # return render(request, 'analyze.html', params)
+    if (removepunc!='on' and fullcaps!='on' and fullsmall!='on' and countchar!='on'):
+        return HttpResponse("Pls SELECT any operation!")
+    return render(request, 'analyze.html', params)

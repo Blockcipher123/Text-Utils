@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Analyze Text</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-image: url("your-image.jpg");
+            /* <img src: "your-image.jpg";> */
+        }
+        h1{
+            text-align: center;
+            color: blueviolet;
+        }
+        h2{
+            padding-top: 40px;
+            /* background-image: url('cute.png'); */
+            color: rgb(255, 0, 55);
+            text-align: center;
+            margin: auto;
+            height: 300px;
+            width: 750px;
+            border: 2px solid rgb(165, 11, 237);
+            background-color: rgb(177, 228, 255);
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <h1>Your Analyzed Text - {{ pursose }}</h1>
+    <br><br>
+    <p style="padding-top: 100px;">
+        <h2>
+        {{ analyzed_text }}
+        {{ countchars }}
+        </h2>
+        
+    </p>
+    
+</body>
+</html>
