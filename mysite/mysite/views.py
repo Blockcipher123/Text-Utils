@@ -41,6 +41,9 @@ def analyze(request):
         # return render(request, 'analyze.html', params)
     if (fullsmall=='on'):
         analyze =''
+
+
+        
         for i in djtext:
             analyze=analyze+i.lower()
         params = {'pursose':'Changed To LowerCase', 'analyzed_text':analyze}
